@@ -1,0 +1,34 @@
+# --- Python y Entornos Virtuales ---
+.venv/
+venv/
+env/
+ENV/
+build/
+dist/
+*.egg-info/
+
+# --- Caché de Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# --- Configuración y Secretos (¡Crucial!) ---
+.env
+*.env
+.secrets/
+
+# --- Base de datos local (si usas SQLite) ---
+*.db
+*.sqlite3
+
+# --- Editores de código y Sistema Operativo ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# --- Logs ---
+*.log
