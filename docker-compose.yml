@@ -1,0 +1,37 @@
+
+services:
+  hiking-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hiking-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src:/app/src
+    depends_on:
+      - mariadb
+    networks:
+      - hiking-network
+
+  mariadb:
+    image: mariadb:11
+    container_name: hiking-mariadb
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: hiking
+      MARIADB_USER: hiking_user
+      MARIADB_PASSWORD: hiking_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - hiking-network
+
+volumes:
+  mariadb_data:
+
+networks:
+  hiking-network:
+    driver: bridge

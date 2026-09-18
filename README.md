@@ -16,3 +16,11 @@ source .venv/bin/activate
 ```
 uv run fastapi dev src/main.py
 ```
+
+## Set up with docker
+this projet is runing with docker.So to run the projet use docker commands 
+to avoid docker commands use make commands 
+
+```
+ make up 
+```
