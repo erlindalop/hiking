@@ -3,8 +3,8 @@ import uuid
 
 
 class TouristPlaceService:
-    def __init__(self, tourist_places):
-        self.tourist_places = tourist_places
+    def __init__(self, tourist_places_repository):
+        self.tourist_place_repository = tourist_places_repository
 
     def create(self, new_tourist_place: TouristPlaceCreate):
         if len(new_tourist_place.nombre)> 4 :
@@ -16,15 +16,13 @@ class TouristPlaceService:
                 altura= new_tourist_place.altura,
                 nivel= new_tourist_place.nivel,
             )
-            self.tourist_places.append(tourist_place)
+            self.tourist_place_repository.create(tourist_place)
             return tourist_place
         else:
             return {'no puedes tener un nombre tan corto, revisa tu nombre por favor'}
 
     def get(self):
-        return self.tourist_places
+        return self.tourist_place_repository.get()
 
     def get_by_id(self, id: str):
-        for tourist_place in self.tourist_places:
-            if tourist_place.id == id:
-                return tourist_place
+        return self.tourist_place_repository.get_by_id(id)  

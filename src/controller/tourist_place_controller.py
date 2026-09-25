@@ -1,6 +1,7 @@
 from dto.tourist_place import TouristPlace, TouristPlaceCreate
 from fastapi import APIRouter
 import uuid
+from repository.tourist_place_repository import TouristPlaceRepository
 from service.tourist_place_service import TouristPlaceService
 from fastapi import Depends
 
@@ -8,7 +9,8 @@ router = APIRouter()
 tourist_places = []
 
 def get_tourist_place_service():
-    return TouristPlaceService(tourist_places)
+    tourist_places_repository = TouristPlaceRepository(tourist_places)
+    return TouristPlaceService(tourist_places_repository)
 
 @router.post("/tourist_places")
 def create_turist_place(new_tourist_place: TouristPlaceCreate, tourist_place_service = Depends(get_tourist_place_service)):

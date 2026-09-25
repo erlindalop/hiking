@@ -3,9 +3,8 @@ import uuid
 
 
 class TouristService:
-    def __init__(self, tourists):
-        self.tourists = tourists
-
+    def __init__(self, tourist_repository):
+        self.tourist_repository = tourist_repository
 
     def create(self, new_tourist):
         if new_tourist.age >= 18:
@@ -15,17 +14,15 @@ class TouristService:
                 age= new_tourist.age, 
                 gender= new_tourist.gender
             )
-            self.tourists.append(tourist)
+            self.tourist_repository.create(tourist)
             return tourist 
         else:
             return {"error": "Turista menor de edad"}
 
     def get(self):
-        return self.tourists
+        return self.tourist_repository.get()
 
     def get_by_id(self, id: str):
-        for tourist in self.tourists:
-            if tourist.id == id:
-                return tourist
+        return self.tourist_repository.get_by_id(id)     
 
 
